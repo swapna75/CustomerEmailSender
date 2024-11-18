@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: #333;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+
+        .status-sent {
+            color: green;
+        }
+
+        .status-failed {
+            color: red;
+        }
+
+        .status-pending {
+            color: orange;
+        }
+    </style>
+</head>
+<body>
+    <h1>Email Dashboard</h1>
+    <table>
+        <tr>
+            <th>Email</th>
+            <th>Status</th>
+            <th>Delivery Status</th>
+        </tr>
+        {% for email in email_statuses %}
+        <tr>
+            <td>{{ email.email }}</td>
+            <td class="status-{{ email.status.lower() }}">{{ email.status }}</td>
+            <td>{{ email.delivery_status }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
